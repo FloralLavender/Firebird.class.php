@@ -5,7 +5,7 @@ warnings and false return values into exceptions.
 
 There is currently no documentation but it is easy to use. Most functions have
 been converted from ibase_xxx_yyy($resource) to Resource::xxxYyy. The
-FirebirdStatement is one of the few exceptions to this rule, ibase_execute
+FirebirdStatement class is one of the few exceptions to this rule, ibase_execute
 expects varargs to be passed to it but FirebirdStatement uses the more familiar
 bindParam and bindValue methods that can be found in other database wrappers. To
 use the old varargs form you should call the executeVarArgs method.
