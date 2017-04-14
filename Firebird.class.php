@@ -313,8 +313,10 @@ class FirebirdResult {
         if ($open_blobs === TRUE && ($fetch_flag & IBASE_FETCH_BLOBS) === 0
             && $array !== FALSE) {
             foreach ($this->blob_column_names as $blob_column_name) {
-                $array[$blob_column_name] = new FirebirdBlob($this->connection,
-                    $array[$blob_column_name]);
+                if (!is_null($array[$blob_column_name])) {
+                    $array[$blob_column_name] = new FirebirdBlob(
+                        $this->connection, $array[$blob_column_name]);
+                }
             }
         } else if ($array === FALSE) {
             $errcode = ibase_errcode();
@@ -330,8 +332,10 @@ class FirebirdResult {
         if ($open_blobs === TRUE && ($fetch_flag & IBASE_FETCH_BLOBS) === 0
             && $object !== FALSE) {
             foreach ($this->blob_column_names as $blob_column_name) {
-                $object->{$blob_column_name} = new FirebirdBlob(
-                    $this->connection, $object->{$blob_column_name});
+                if (!is_null($object->{$blob_column_name})) {
+                    $object->{$blob_column_name} = new FirebirdBlob(
+                        $this->connection, $object->{$blob_column_name});
+                }
             }
         } else if ($object === FALSE) {
             $errcode = ibase_errcode();
@@ -347,8 +351,10 @@ class FirebirdResult {
         if ($open_blobs === TRUE && ($fetch_flag & IBASE_FETCH_BLOBS) === 0
             && $array !== FALSE) {
             foreach ($this->blob_columns as $blob_column) {
-                $array[$blob_column] = new FirebirdBlob($this->connection,
-                    $array[$blob_column]);
+                if (!is_null($array[$blob_column])) {
+                    $array[$blob_column] = new FirebirdBlob($this->connection,
+                        $array[$blob_column]);
+                }
             }
         } else if ($array === FALSE) {
             $errcode = ibase_errcode();
